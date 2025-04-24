@@ -77,6 +77,7 @@ function runTests() {
   // Changes what's displaying depending on if only 1 test is ran
   if (numTestRuns <= 1) {
     numTestRuns = 1;
+    document.getElementById('numberInput').value = 1;
     displayStyle('tableAndHeader', 'none');
     displayStyle('tableButton', 'none');
   } else {
@@ -223,7 +224,7 @@ Object.assign(mybutton.style, {
   bottom: "20px",
   right: "30px",
   zIndex: "99",
-  fontSize: "20px",
+  fontSize: "24px", /* Adjusted for better scaling */
   border: "none",
   outline: "none",
   backgroundColor: "rgba(0, 0, 0, .6)",
@@ -236,6 +237,8 @@ Object.assign(mybutton.style, {
   width: "50px",
   height: "50px",
   transition: "opacity 0.3s ease, background-color 0.3s ease",
+  alignItems: "center", /* Centers vertically */
+  justifyContent: "center", /* Centers horizontally */
 });
 
 // Hover effect (prevent hiding while hovered)
@@ -258,7 +261,7 @@ function hideButtonAfterDelay() {
   hideTimeout = setTimeout(() => {
     mybutton.style.opacity = "0";
     setTimeout(() => mybutton.style.display = "none", 300);
-  }, 2000); // Hide after 2 seconds of inactivity
+  }, 1500); // Hide after 2 seconds of inactivity
 }
 
 // Add scroll event listener to show/hide button
@@ -266,7 +269,7 @@ window.addEventListener("scroll", () => {
   clearTimeout(hideTimeout); // Cancel previous hide timer
 
   if (document.documentElement.scrollTop > 200) {
-    mybutton.style.display = "block";
+    mybutton.style.display = "flex";
     mybutton.style.opacity = ".8";
 
     // Start hide timer after scroll stops **only if NOT hovered**
