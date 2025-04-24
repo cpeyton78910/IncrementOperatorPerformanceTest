@@ -78,6 +78,13 @@ th {
 .ranking {
   margin-bottom: 20px;
 }
+#tableAndHeader h2 {
+  text-align: center;
+  margin-top: 0;
+}
+#tableButton {
+  margin-bottom: 0;
+}
 #resultsTable {
   margin: 0 auto;
   border-collapse: collapse;
@@ -95,7 +102,10 @@ th {
   display: inline-block;
   margin-left: 2.5rem;
   margin-top: 5px;
-  margin-bottom: 15px;
+}
+span.bold.fakeOL {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 37.5rem) {
