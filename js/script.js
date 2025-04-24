@@ -19,7 +19,7 @@ let decimalPlaces = 3;
 
 function testPostIncrement() {
   let start = performance.now();
-  for (let i = 0; i < 50000000; i++) {
+  for (let i = 0; i < 10000000; i++) {
     let x = i++;
   }
   let end = performance.now();
@@ -28,7 +28,7 @@ function testPostIncrement() {
 
 function testPreIncrement() {
   let start = performance.now();
-  for (let i = 0; i < 50000000; ++i) {
+  for (let i = 0; i < 10000000; ++i) {
     let x = ++i;
   }
   let end = performance.now();
@@ -37,7 +37,7 @@ function testPreIncrement() {
 
 function testAdditionAssignment() {
   let start = performance.now();
-  for (let i = 0; i < 50000000; i+=1) {
+  for (let i = 0; i < 10000000; i+=1) {
     let x = i += 1;
   }
   let end = performance.now();
