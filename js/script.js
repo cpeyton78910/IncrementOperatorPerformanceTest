@@ -21,6 +21,8 @@ function darkModeToggle() {
   }
 }
 
+window.scrollTo(0, 0);
+document.body.style.overflow = "hidden";
 document.getElementById('runButton').addEventListener('click', onButtonClick);
 
 let numTestRuns = 0;
