@@ -58,6 +58,8 @@ function displayStyle (ID, displayType) {
 }
 
 function onButtonClick() {
+  window.scrollTo(0, 0);
+  document.body.style.overflow = "hidden";
   displayStyle('loading', 'block');
   displayStyle('testForm', 'none');
   displayStyle('content', 'none');
@@ -66,6 +68,7 @@ function onButtonClick() {
 }
 function runTests() {
   // Change Visibility
+  document.body.style.overflow = "auto";
   displayStyle('loading', 'none');
   displayStyle('firstRunP', 'none');
   displayStyle('pageTitle', 'block');
