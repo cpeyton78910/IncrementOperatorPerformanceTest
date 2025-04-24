@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Increment Operator Performance Test</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    hljs.highlightAll();
+    });
     // Declare Variables
     let numberInput;
     let initialValue = 100;
@@ -56,34 +61,83 @@
 <body>
   <h1 id="pageTitle">Increment Operator Performance Test</h1>
   <div id="content">
-    <h2>Explanation of Increment Operators:</h2>
+    <h2>Explanation of Increment Operators and how the tests work:</h2>
     <div class="explain">
-      <span class="bold">1. Post-Increment</span> (i++):
+      <span class="explainSubHeading"><span class="bold">1. Post-Increment</span> (i++):</span>
       <ul>
         <li><span class="bold">Operation:</span> Increments `i` after its current value is used.</li>
         <li><span class="bold">JIT Handling:</span> The JIT compiler recognizes this pattern and optimizes it by minimizing the overhead of storing the original value temporarily.</li>
+        <li><span class="bold">Function Used in Benchmarking:</span></li>
       </ul>
-      <br>
-      <span class="bold">2. Pre-Increment</span> (++i):
+      <pre class="code"><code class="language-javascript">
+function testPostIncrement() {
+  let start = performance.now();
+  for (let i = 0; i < 10000000; i++) {
+    let x = i++;
+  }
+  let end = performance.now();
+  return end - start;
+}
+      </code></pre>
+
+      <br><br>
+      <span class="explainSubHeading"><span class="bold">2. Pre-Increment</span> (++i):</span>
       <ul>
         <li><span class="bold">Operation:</span> Increments `i` before its current value is used.</li>
         <li><span class="bold">JIT Handling:</span> The JIT compiler can directly increment the value of `i` without needing to store the original value. This makes `++i` slightly more efficient in certain contexts because it avoids the overhead of temporary storage.</li>
+        <li><span class="bold">Function Used in Benchmarking:</span></li>
       </ul>
-      <br>
-      <span class="bold">3. Addition Assignment</span> (i+=1):
+      <pre class="code"><code class="language-javascript">
+function testPreIncrement() {
+  let start = performance.now();
+  for (let i = 0; i < 10000000; ++i) {
+    let x = ++i;
+  }
+  let end = performance.now();
+  return end - start;
+}
+      </code></pre>
+      <br><br>
+      <span class="explainSubHeading"><span class="bold">3. Addition Assignment</span> (i+=1):</span>
       <ul>
         <li><span class="bold">Operation:</span> Directly adds 1 to `i`.</li>
         <li><span class="bold">JIT Handling:</span> This operation is straightforward for the JIT compiler to optimize. It directly modifies the value of `i`, which is very efficient but involves a slightly different internal process compared to `++i`.</li>
+        <li><span class="bold">Function Used in Benchmarking:</span></li>
       </ul>
+      <pre class="code"><code class="language-javascript">
+function testAdditionAssignment() {
+  let start = performance.now();
+  for (let i = 0; i < 10000000; i+=1) {
+    let x = i += 1;
+  }
+  let end = performance.now();
+  return end - start;
+}
+      </code></pre><br><br>
+        <span class="explainSubHeading"><span class="bold smallIndent">How it Comes Together:</span></span>
+        <ul>
+          <li>
+            <span class="bold">Test Execution:</span>
+            The test consists of a simple <code><span class="for" >for</span></code> loop, where the increment operator being evaluated serves as both the loop counter and a secondary operation. One instance of the operator ensures proper iteration through the loop, while another demonstrates its effect within a controlled environment.
+          </li>
+          <li>
+            <span class="bold">Timing:</span>
+            Each test determines performance by capturing the start time and end time of the execution using <code>performance.now()</code>Which when run captures an accurate relative snapshot of the current time. By subtracting the start time from the end time, the total runtime is calculated, allowing for a direct comparison of different increment operators. This allows for performance comparison between the various methods.
+          </li>
+          <li>
+            <span class="bold">The Repetition:</span>
+            Each increment operator (<code>i++</code>, <code>++i</code>, and <code>i+=<span class="one" >1</span></code>) undergoes its test, executed sequentially. The number of times the test runs depends on how many times you said, following the same structured order each time. This repetition leverages the law of large numbers, producing a more reliable assessment of each operator's performance.
+          </li>
+        </ul>
     </div>
 
     <h2>Results:</h2>
     <div id="results">
-      <span class="bold">1. Post-Increment</span> (i++):<br>
+      <span class="explainSubHeading"><span class="bold">1. Post-Increment</span> (i++):</span><br>
       <span class="indent"><span class="bold">Average Time:</span> 10ms</span><br><br>
-      <span class="bold">2. Pre-Increment</span> (++i):<br>
+      <span class="explainSubHeading"><span class="bold">2. Pre-Increment</span> (++i):</span><br>
       <span class="indent"><span class="bold">Average Time:</span> 20ms</span><br><br>
-      <span class="bold">3. Addition Assignment</span> (i+=1):<br>
+      <span class="explainSubHeading"><span class="bold">3. Addition Assignment</span> (i+=1):</span><br>
       <span class="indent"><span class="bold">Average Time:</span> 30ms</span><br><br>
     </div>
     <button id="tableButton" onclick="toggleTable()">Hide Table</button>
