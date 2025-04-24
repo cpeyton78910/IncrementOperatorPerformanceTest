@@ -22,7 +22,7 @@ function darkModeToggle() {
 }
 
 window.scrollTo(0, 0);
-document.body.style.overflow = "hidden";
+document.body.style.overflow = 'hidden';
 document.getElementById('runButton').addEventListener('click', onButtonClick);
 
 let numTestRuns = 0;
@@ -61,7 +61,7 @@ function displayStyle (ID, displayType) {
 
 function onButtonClick() {
   window.scrollTo(0, 0);
-  document.body.style.overflow = "hidden";
+  document.body.style.overflow = 'hidden';
   displayStyle('loading', 'block');
   displayStyle('testForm', 'none');
   displayStyle('content', 'none');
@@ -70,7 +70,7 @@ function onButtonClick() {
 }
 function runTests() {
   // Change Visibility
-  document.body.style.overflow = "auto";
+  document.body.style.overflow = 'auto';
   displayStyle('loading', 'none');
   displayStyle('firstRunP', 'none');
   displayStyle('pageTitle', 'block');
@@ -118,7 +118,7 @@ function runTests() {
 
 function updateRanking(results) {
   results.sort((a, b) => parseFloat(a.average) - parseFloat(b.average));
-  console.log('Results Array:')
+  console.log('Results Array:');
   console.log(results.map(v => v.average[0]));
   let rankingList = document.getElementById('results');
   rankingList.innerHTML = '';
@@ -164,10 +164,10 @@ function updateTable(postIncrementTimes, preIncrementTimes, additionAssignmentTi
     { times: postIncrementTimes, average: postIncrementAverage },
     { times: preIncrementTimes, average: preIncrementAverage },
     { times: additionAssignmentTimes, average: additionAssignmentAverage }
-  ]
+  ];
   // Sort array
   sortedVars.sort((a, b) => parseFloat(a.average) - parseFloat(b.average));
-  console.log('Table Array:')
+  console.log('Table Array:');
   console.log(sortedVars.map(v => v.average[0]));
 
   // Make Table
@@ -219,33 +219,33 @@ function adjustLoadingPosition() {
 
 // Scroll To Top Button
 // Create the button element
-let mybutton = document.createElement("button");
-mybutton.id = "myBtn";
-mybutton.innerHTML = "&#x25B2;"; // Upward arrow
-mybutton.title = "Go to top";
+let mybutton = document.createElement('button');
+mybutton.id = 'myBtn';
+mybutton.innerHTML = '&#x25B2;'; // Upward arrow
+mybutton.title = 'Go to top';
 
 // Apply styles dynamically
 Object.assign(mybutton.style, {
-  display: "none",
-  position: "fixed",
-  bottom: "30px",
-  right: "30px",
-  zIndex: "99",
-  fontSize: "2rem",
-  border: "none",
-  outline: "none",
-  backgroundColor: "rgba(0, 0, 0, .6)",
-  color: "white",
-  cursor: "pointer",
-  padding: "15px",
-  borderRadius: "40%",
-  opacity: "0",
-  textAlign: "center",
-  width: "4rem",
-  height: "4rem",
-  transition: "opacity 0.3s ease, background-color 0.3s ease",
-  alignItems: "center", /* Centers vertically */
-  justifyContent: "center", /* Centers horizontally */
+  display: 'none',
+  position: 'fixed',
+  bottom: '30px',
+  right: '30px',
+  zIndex: '99',
+  fontSize: '2rem',
+  border: 'none',
+  outline: 'none',
+  backgroundColor: 'rgba(0, 0, 0, .6)',
+  color: 'white',
+  cursor: 'pointer',
+  padding: '15px',
+  borderRadius: '40%',
+  opacity: '0',
+  textAlign: 'center',
+  width: '4rem',
+  height: '4rem',
+  transition: 'opacity 0.3s ease, background-color 0.3s ease',
+  alignItems: 'center', /* Centers vertically */
+  justifyContent: 'center', /* Centers horizontally */
 });
 
 // Hover effect (prevent hiding while hovered)
@@ -254,12 +254,12 @@ mybutton.onmouseover = () => {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
   }
   if (!isMobile()) {
-    mybutton.style.backgroundColor = "#555";
+    mybutton.style.backgroundColor = '#555';
   clearTimeout(hideTimeout); // Stop hiding when hovered
   }
 };
 mybutton.onmouseout = () => {
-  mybutton.style.backgroundColor = "rgba(0, 0, 0, .6)";
+  mybutton.style.backgroundColor = 'rgba(0, 0, 0, .6)';
   hideButtonAfterDelay(); // Restart hide timer on mouse out
 };
 
@@ -271,33 +271,33 @@ let hideTimeout;
 // Function to hide the button after inactivity
 function hideButtonAfterDelay() {
   hideTimeout = setTimeout(() => {
-    mybutton.style.opacity = "0";
-    setTimeout(() => mybutton.style.display = "none", 300);
+    mybutton.style.opacity = '0';
+    setTimeout(() => mybutton.style.display = 'none', 300);
   }, 1500); // Hide after 2 seconds of inactivity
 }
 
 // Add scroll event listener to show/hide button
-window.addEventListener("scroll", () => {
+window.addEventListener('scroll', () => {
   clearTimeout(hideTimeout); // Cancel previous hide timer
 
   if (document.documentElement.scrollTop > 200) {
-    mybutton.style.display = "flex";
-    mybutton.style.opacity = ".8";
+    mybutton.style.display = 'flex';
+    mybutton.style.opacity = '.8';
 
     // Start hide timer after scroll stops **only if NOT hovered**
-    if (!mybutton.matches(":hover")) {
+    if (!mybutton.matches(':hover')) {
       hideButtonAfterDelay();
     }
   } else {
-    mybutton.style.opacity = "0";
-    mybutton.style.display = "none";
+    mybutton.style.opacity = '0';
+    mybutton.style.display = 'none';
   }
 });
 
 // Smooth scroll to top when button is clicked
 mybutton.onclick = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  mybutton.style.opacity = "0";
-  mybutton.style.display = "none";
+  mybutton.style.opacity = '0';
+  mybutton.style.display = 'none';
 };
