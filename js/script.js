@@ -208,3 +208,81 @@ function adjustLoadingPosition() {
   const marginTop = (viewportHeight*0.65);
   loadingElement.style.marginTop = `${marginTop}px`;
 }
+
+// Scroll To Top Button
+// Create the button element
+let mybutton = document.createElement("button");
+mybutton.id = "myBtn";
+mybutton.innerHTML = "&#x25B2;"; // Upward arrow
+mybutton.title = "Go to top";
+
+// Apply styles dynamically
+Object.assign(mybutton.style, {
+  display: "none",
+  position: "fixed",
+  bottom: "20px",
+  right: "30px",
+  zIndex: "99",
+  fontSize: "20px",
+  border: "none",
+  outline: "none",
+  backgroundColor: "rgba(0, 0, 0, .6)",
+  color: "white",
+  cursor: "pointer",
+  padding: "15px",
+  borderRadius: "40%",
+  opacity: "0",
+  textAlign: "center",
+  width: "50px",
+  height: "50px",
+  transition: "opacity 0.3s ease, background-color 0.3s ease",
+});
+
+// Hover effect (prevent hiding while hovered)
+mybutton.onmouseover = () => {
+  mybutton.style.backgroundColor = "#555";
+  clearTimeout(hideTimeout); // Stop hiding when hovered
+};
+mybutton.onmouseout = () => {
+  mybutton.style.backgroundColor = "rgba(0, 0, 0, .6)";
+  hideButtonAfterDelay(); // Restart hide timer on mouse out
+};
+
+// Append button to body
+document.body.appendChild(mybutton);
+
+let hideTimeout;
+
+// Function to hide the button after inactivity
+function hideButtonAfterDelay() {
+  hideTimeout = setTimeout(() => {
+    mybutton.style.opacity = "0";
+    setTimeout(() => mybutton.style.display = "none", 300);
+  }, 2000); // Hide after 2 seconds of inactivity
+}
+
+// Add scroll event listener to show/hide button
+window.addEventListener("scroll", () => {
+  clearTimeout(hideTimeout); // Cancel previous hide timer
+
+  if (document.documentElement.scrollTop > 200) {
+    mybutton.style.display = "block";
+    mybutton.style.opacity = ".8";
+
+    // Start hide timer after scroll stops **only if NOT hovered**
+    if (!mybutton.matches(":hover")) {
+      hideButtonAfterDelay();
+    }
+  } else {
+    mybutton.style.opacity = "0";
+    mybutton.style.display = "none";
+  }
+});
+
+// Smooth scroll to top when button is clicked
+mybutton.onclick = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  mybutton.style.opacity = "0";
+  mybutton.style.display = "none";
+};
