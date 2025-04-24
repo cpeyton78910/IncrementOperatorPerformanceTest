@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Increment Operator Performance Test</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Declare Variables
+    let numberInput;
+    let initialValue = 100;
+    let cursorPosition;
+    let highlighted = false;
+    // When text is inputted:
+    function updateButtonText() {
+      const numberInputElement = document.getElementById('numberInput');
+      const button = document.getElementById('runButton');
+      cursorPosition = numberInputElement.selectionStart;
+      numberInput = numberInputElement.value;
+      if (numberInput == 0 || numberInput == 1) {
+        numberInput = '1';
+        button.innerHTML = 'Run Test';
+      } else if (numberInput < 0) {
+        numberInput = numberInput*-1;
+        cursorPosition = 0;
+      } else if (highlighted == true && isNaN(numberInput) == true && numberInput.length == 1) {
+        numberInput = '1';
+        numberInputElement.value = 0;
+      } else if ((isNaN(numberInput) == true || parseFloat(numberInput) != parseInt(numberInput) || numberInput.includes('.'))) {
+        numberInput = initialValue;
+        cursorPosition -= 1;
+      } else {
+        button.innerHTML = 'Run Tests';
+      }
+
+      if (numberInputElement.value == 0) {
+        numberInputElement.value = numberInput;
+        numberInputElement.setSelectionRange(0, 1);
+        highlighted = true;
+      } else {
+        numberInputElement.value = numberInput;
+        numberInputElement.setSelectionRange(cursorPosition, cursorPosition);
+      }
+      
+      initialValue = numberInput; // Update the initial value
+    }
+  </script>
+</head>
+<body>
+  <h1 id="pageTitle">Increment Operator Performance Test</h1>
+  <div id="content">
+    <h2>Explanation of Increment Operators:</h2>
+    <div class="explain">
+      <span class="bold">1. Post-Increment</span> (i++):
+      <ul>
+        <li><span class="bold">Operation:</span> Increments `i` after its current value is used.</li>
+        <li><span class="bold">JIT Handling:</span> The JIT compiler recognizes this pattern and optimizes it by minimizing the overhead of storing the original value temporarily.</li>
+      </ul>
+      <br>
+      <span class="bold">2. Pre-Increment</span> (++i):
+      <ul>
+        <li><span class="bold">Operation:</span> Increments `i` before its current value is used.</li>
+        <li><span class="bold">JIT Handling:</span> The JIT compiler can directly increment the value of `i` without needing to store the original value. This makes `++i` slightly more efficient in certain contexts because it avoids the overhead of temporary storage.</li>
+      </ul>
+      <br>
+      <span class="bold">3. Addition Assignment</span> (i+=1):
+      <ul>
+        <li><span class="bold">Operation:</span> Directly adds 1 to `i`.</li>
+        <li><span class="bold">JIT Handling:</span> This operation is straightforward for the JIT compiler to optimize. It directly modifies the value of `i`, which is very efficient but involves a slightly different internal process compared to `++i`.</li>
+      </ul>
+    </div>
+
+    <h2>Results:</h2>
+    <div id="results">
+      <span class="bold">1. Post-Increment</span> (i++):<br>
+      <span class="indent"><span class="bold">Average Time:</span> 10ms</span>
+      <br><br>
+      <span class="bold">2. Pre-Increment</span> (++i):<br>
+      <span class="indent"><span class="bold">Average Time:</span> 20ms</span>
+      <br><br>
+      <span class="bold">3. Addition Assignment</span> (i+=1):<br>
+      <span class="indent"><span class="bold">Average Time:</span> 30ms</span>
+    </div>
+
+    <h2 style="text-align: center;">Test Results Table:</h2>
+    <table id="resultsTable">
+      <thead>
+        <tr>
+          <th></th>
+          <th id="fastest"></th>
+          <th id="secondFastest"></th>
+          <th id="slowest"></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot>
+          <tr>
+            <th>Average:</th>
+            <th id="fastestAverage"></th>
+            <th id="secondFastestAverage"></th>
+            <th id="slowestAverage"></th>
+          </tr>
+      </tfoot>
+    </table>
+  </div>
+  <div id="testForm">
+    <p id="runAgainP">Do you want to run the test again? If so, how many times?</p>
+    <p id="firstRunP">How many times would you like to run the test?</p>
+    <input type="text" id="numberInput" name="numberInput" autocomplete="off" value="100" oninput="updateButtonText()">
+    <button id="runButton">Run Tests</button>
+  </div>
+  <div id="loading">
+    <h1>
+      Loading<span class="dots"><span>.</span><span>.</span><span>.</span></span>
+    </h1>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
