@@ -37,6 +37,13 @@
         numberInputElement.value = numberInput;
         numberInputElement.setSelectionRange(0, 1);
         highlighted = true;
+        function isMobile() {
+          return /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+        }
+        if (isMobile()) {
+          numberInputElement.setSelectionRange(0, 0);
+          numberInputElement.value = '';
+        }
       } else {
         numberInputElement.value = numberInput;
         numberInputElement.setSelectionRange(cursorPosition, cursorPosition);
