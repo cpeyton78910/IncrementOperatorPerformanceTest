@@ -3,6 +3,10 @@
   background-color: #222;
   color: #f2f2f2;
 }
+.darkMode li code {
+  background: rgba(0, 0, 0, 0.5); 
+  border: 1px solid rgb(68, 68, 68);
+}
 .darkMode button, .darkMode input{
   background-color: #0f0f0f;
   color: #f2f2f2;
@@ -12,6 +16,10 @@
 }
 .darkMode button:hover, .darkMode input:hover {
   background-color: #181818;
+}
+.darkMode pre.code {
+  background: black;
+  box-shadow: none;
 }
 .darkMode td, .darkMode th {
   border: 1px solid #444;
@@ -78,11 +86,60 @@ h1 {
 h2 {
   margin-top: 40px;
 }
+.explainSubHeading {
+  font-size: 20px;
+}
 p {
   margin-bottom: 0;
 }
 ul, li {
   margin-top: 8px;
+}
+/* Code */
+li code {
+  background: rgba(30, 30, 30, 0.9); 
+  border-radius: 4px; 
+  border: 1px solid rgb(68, 68, 68);
+  font-family: 'Courier New', monospace; 
+  font-size: .875rem;
+  padding: 0 5px; 
+  margin: 0; 
+  color: #dcdcdc; 
+}
+
+code span.for {
+  color: #569CD6; /* Highlight 'for' keyword */
+}
+
+code span.one {
+  color: #B8D7A3; /* Highlight number '1' */
+}
+
+pre.code {
+  background: #1e1e1e;
+  border: 2px solid #444;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+  border-radius: .5rem;
+  padding: 0 1rem;
+  width: 20.625rem;
+  margin: 0;
+  margin-left: 2.5rem;
+}
+.hljs {
+  background: transparent !important; /* Removes background */
+  margin: 0;
+  padding: 0!important;
+  font: inherit !important;
+}
+.code {
+  color: #dcdcdc; /* Default text color */
+  font-family: 'Courier New', monospace;
+  font-size: .875rem;
+} /* End Code */
+.smallIndent::before {
+  content: "1.";
+  visibility: hidden;
+  user-select: none;
 }
 table {
   width: 75%;
@@ -141,19 +198,42 @@ th {
   #loading {
     font-size: 1.5rem
   }
+  pre.code {
+    margin: 0 auto;
+  }
 }
 @media (max-width: 28.125rem) {
   #loading {
     font-size: 1.2rem
+  }
+  pre.code {
+    width: 80%;
+    font-size: .65rem;
+    padding: 2px;
+  }
+  code.language-javascript {
+    width: 93%;
+    margin: 0 auto;
   }
 }
 @media (max-width: 21.875rem) {
   #loading {
     font-size: 1rem
   }
+  pre.code {
+    width: 90%;
+    font-size: .6rem;
+    padding: 0;
+  }
 }
 @media (max-width: 18.75rem) {
   #loading {
     font-size: .8rem
+  }
+  pre.code {
+    font-size: .55rem;
+  }
+  code.language-javascript {
+    width: 100%;
   }
 }
