@@ -1,13 +1,22 @@
 // Dark Mode
+// Checks if browser has Dark Mode enabled
+checkDarkMode();
+function checkDarkMode() {
+  const darkModeButton = document.getElementById;
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    darkModeButton.innerText = 'Light Mode';
+    darkModeToggle();
+    console.log('Hello from dark mode');
+  }
+}
+// Toggle On and Off Dark Mode
 function darkModeToggle() {
   let body = document.body;
-  let darkModeButton = document.getElementById('darkModeButton');
-  
   if (darkModeButton.innerText == 'Dark Mode') {
-    body.classList.add('darkMode'); // Correct method for adding a class
+    body.classList.add('darkMode');
     darkModeButton.innerText = 'Light Mode';
   } else {
-    body.classList.remove('darkMode'); // Proper way to remove class
+    body.classList.remove('darkMode');
     darkModeButton.innerText = 'Dark Mode';
   }
 }
@@ -66,7 +75,8 @@ function runTests() {
   
   numTestRuns = Number(document.getElementById('numberInput').value);
   // Changes what's displaying depending on if only 1 test is ran
-  if (numTestRuns == 1) {
+  if (numTestRuns <= 1) {
+    numTestRuns = 1;
     displayStyle('tableAndHeader', 'none');
     displayStyle('tableButton', 'none');
   } else {
