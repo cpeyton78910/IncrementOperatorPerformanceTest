@@ -73,35 +73,35 @@
     <h2>Results:</h2>
     <div id="results">
       <span class="bold">1. Post-Increment</span> (i++):<br>
-      <span class="indent"><span class="bold">Average Time:</span> 10ms</span>
-      <br><br>
+      <span class="indent"><span class="bold">Average Time:</span> 10ms</span><br><br>
       <span class="bold">2. Pre-Increment</span> (++i):<br>
-      <span class="indent"><span class="bold">Average Time:</span> 20ms</span>
-      <br><br>
+      <span class="indent"><span class="bold">Average Time:</span> 20ms</span><br><br>
       <span class="bold">3. Addition Assignment</span> (i+=1):<br>
-      <span class="indent"><span class="bold">Average Time:</span> 30ms</span>
+      <span class="indent"><span class="bold">Average Time:</span> 30ms</span><br><br>
     </div>
-
-    <h2 style="text-align: center;">Test Results Table:</h2>
-    <table id="resultsTable">
-      <thead>
-        <tr>
-          <th></th>
-          <th id="fastest"></th>
-          <th id="secondFastest"></th>
-          <th id="slowest"></th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-      <tfoot>
+    <button id="tableButton" onclick="toggleTable()">Hide Table</button>
+    <div id="tableAndHeader">
+      <h2>Test Results Table:</h2>
+      <table id="resultsTable">
+        <thead>
           <tr>
-            <th>Average:</th>
-            <th id="fastestAverage"></th>
-            <th id="secondFastestAverage"></th>
-            <th id="slowestAverage"></th>
+            <th></th>
+            <th id="fastest"></th>
+            <th id="secondFastest"></th>
+            <th id="slowest"></th>
           </tr>
-      </tfoot>
-    </table>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+            <tr>
+              <th>Average:</th>
+              <th id="fastestAverage"></th>
+              <th id="secondFastestAverage"></th>
+              <th id="slowestAverage"></th>
+            </tr>
+        </tfoot>
+      </table>
+    </div>
   </div>
   <div id="testForm">
     <p id="runAgainP">Do you want to run the test again? If so, how many times?</p>
