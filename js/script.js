@@ -221,10 +221,10 @@ mybutton.title = "Go to top";
 Object.assign(mybutton.style, {
   display: "none",
   position: "fixed",
-  bottom: "20px",
+  bottom: "30px",
   right: "30px",
   zIndex: "99",
-  fontSize: "24px", /* Adjusted for better scaling */
+  fontSize: "2rem",
   border: "none",
   outline: "none",
   backgroundColor: "rgba(0, 0, 0, .6)",
@@ -234,8 +234,8 @@ Object.assign(mybutton.style, {
   borderRadius: "40%",
   opacity: "0",
   textAlign: "center",
-  width: "50px",
-  height: "50px",
+  width: "4rem",
+  height: "4rem",
   transition: "opacity 0.3s ease, background-color 0.3s ease",
   alignItems: "center", /* Centers vertically */
   justifyContent: "center", /* Centers horizontally */
@@ -243,8 +243,13 @@ Object.assign(mybutton.style, {
 
 // Hover effect (prevent hiding while hovered)
 mybutton.onmouseover = () => {
-  mybutton.style.backgroundColor = "#555";
+  function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+  }
+  if (!isMobile()) {
+    mybutton.style.backgroundColor = "#555";
   clearTimeout(hideTimeout); // Stop hiding when hovered
+  }
 };
 mybutton.onmouseout = () => {
   mybutton.style.backgroundColor = "rgba(0, 0, 0, .6)";
