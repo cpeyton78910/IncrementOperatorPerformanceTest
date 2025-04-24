@@ -1,0 +1,110 @@
+#content {
+  display: none;
+}
+/* Forum */
+#testForm {
+  text-align: center;
+}
+button {
+  width: 4.75rem;
+  display: inline;
+  margin: 20px auto;
+}
+#testForm p {
+  margin-top: 5rem;
+}
+#runAgainP {
+  display: none;
+}
+
+/* Loading */
+#loading {
+  display: none;
+  font-size: 3rem;
+}
+.dots {
+  display: inline-block;
+  width: 20px;
+  text-align: left;
+}
+.dots span {
+  animation: blink 1s infinite;
+}
+.dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes blink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Main Content */
+body {
+  font-family: Arial, sans-serif;
+}
+h1 {
+  text-align: center;
+}
+h2 {
+  margin-top: 40px;
+}
+p {
+  margin-bottom: 0;
+}
+ul, li {
+  margin-top: 8px;
+}
+table {
+  width: 75%;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  margin: 0 auto;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+th {
+  background-color: #f2f2f2;
+}
+.bold {
+  font-weight: bold;
+}
+.ranking {
+  margin-bottom: 20px;
+}
+#resultsTable {
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  width: 40rem;
+  max-width: 80%;
+}
+#resultsTable td {
+  width: 30%;
+}
+#resultsTable td:first-child {
+  width: 10%;
+}
+.indent {
+  display: inline-block;
+  margin-left: 2.5rem;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 37.5rem) {
+  #loading {
+    font-size: 2rem
+  }
+}
+@media (max-width: 26.5625rem) {
+  #loading {
+    font-size: 1.5rem
+  }
+}
