@@ -10,13 +10,16 @@
   padding: .25rem;
   border-radius: .1875rem;
 }
+.darkMode button:hover, .darkMode input:hover {
+  background-color: #181818;
+}
 .darkMode td, .darkMode th {
   border: 1px solid #444;
   background-color: #0f0f0f;
 }
 .darkMode th {
   background-color: black;
-}
+} /* End of Dark Mode */
 
 #content {
   display: none;
@@ -129,6 +132,9 @@ th {
 @media (max-width: 37.5rem) {
   #loading {
     font-size: 2rem
+  }
+  #darkModeButton {
+    margin-top: 0;
   }
 }
 @media (max-width: 26.5625rem) {
