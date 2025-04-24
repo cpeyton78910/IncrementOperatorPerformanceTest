@@ -101,11 +101,6 @@ th {
 .indent {
   display: inline-block;
   margin-left: 2.5rem;
-  margin-top: 5px;
-}
-span.bold.fakeOL {
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 @media (max-width: 37.5rem) {
