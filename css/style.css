@@ -46,7 +46,7 @@ button {
 /* Loading */
 #loading {
   display: none;
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 .dots {
   display: inline-block;
@@ -129,7 +129,7 @@ th {
   margin-left: 2.5rem;
 }
 
-@media (max-width: 37.5rem) {
+@media (max-width: 46.875rem) {
   #loading {
     font-size: 2rem
   }
@@ -137,8 +137,23 @@ th {
     margin-top: 0;
   }
 }
-@media (max-width: 26.5625rem) {
+@media (max-width: 37.5rem) {
   #loading {
     font-size: 1.5rem
+  }
+}
+@media (max-width: 28.125rem) {
+  #loading {
+    font-size: 1.2rem
+  }
+}
+@media (max-width: 21.875rem) {
+  #loading {
+    font-size: 1rem
+  }
+}
+@media (max-width: 18.75rem) {
+  #loading {
+    font-size: .8rem
   }
 }
