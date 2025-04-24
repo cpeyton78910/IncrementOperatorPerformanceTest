@@ -1,3 +1,17 @@
+// Dark Mode
+function darkModeToggle() {
+  let body = document.body;
+  let darkModeButton = document.getElementById('darkModeButton');
+  
+  if (darkModeButton.innerText == 'Dark Mode') {
+    body.classList.add('darkMode'); // Correct method for adding a class
+    darkModeButton.innerText = 'Light Mode';
+  } else {
+    body.classList.remove('darkMode'); // Proper way to remove class
+    darkModeButton.innerText = 'Dark Mode';
+  }
+}
+
 document.getElementById('runButton').addEventListener('click', onButtonClick);
 
 let numTestRuns = 0;
