@@ -129,17 +129,19 @@ function updateRanking(results) {
     let listItem = document.createElement('div');
     // Set's Results
     if (numTestRuns == 1) {
-      listItem.innerHTML = `<span class="bold">${index + 1}. ${boldPart}</span> ${restPart}:<br><span class="indent"><span class="bold">Time:</span> ${parseFloat(result.average).toFixed(decimalPlaces)} ms</span><br><br>`;
+      listItem.innerHTML = `<span class="explainSubHeading"><span class="bold">${index + 1}. ${boldPart}</span> ${restPart}:</span><br><span class="indent"><span class="bold">Time:</span> ${parseFloat(result.average).toFixed(decimalPlaces)} ms</span><br><br>`;
     } else { // Greater than 1
       let timesArray = result.times; // Make sure times array is available
       let sortedTimes = [...timesArray].sort((a, b) => a - b); // Sort to find min, max & median
       let fastest = sortedTimes[0];
       let slowest = sortedTimes[sortedTimes.length - 1];
     
-      listItem.innerHTML = `<span class="bold">${index + 1}. ${boldPart}</span> ${restPart}:<br>
-        <span class="indent"><span class="bold">Average Time:</span> ${parseFloat(result.average).toFixed(decimalPlaces)} ms</span><br>
-        <span class="indent"><span class="bold">Fastest Time:</span> ${fastest.toFixed(decimalPlaces)} ms</span><br>
-        <span class="indent"><span class="bold">Slowest Time:</span> ${slowest.toFixed(decimalPlaces)} ms</span><br><br>`;
+      listItem.innerHTML = `<span class="explainSubHeading"><span class="bold">${index + 1}. ${boldPart}</span> ${restPart}:</span>
+      <ul>
+        <li><span class="bold">Average Time:</span> ${parseFloat(result.average).toFixed(decimalPlaces)} ms</li>
+        <li><span class="bold">Fastest Time:</span> ${fastest.toFixed(decimalPlaces)} ms</li>
+        <li><span class="bold">Slowest Time:</span> ${slowest.toFixed(decimalPlaces)} ms</li>
+      </ul><br>`;
     }    
     rankingList.appendChild(listItem);
   });
